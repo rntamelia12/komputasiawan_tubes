@@ -1,0 +1,6 @@
+/* Gaya kustom untuk tombol konfirmasi SweetAlert2 */
+.swal2-confirm {
+    background-color: #b11116 !important; /* Warna merah */
+    color: #fff !important; /* Warna teks putih */
+    border: none !important; /* Menghapus border */
+}
