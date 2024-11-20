@@ -1,10 +1,8 @@
-# Use PHP 8.1 FPM as base image
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
-# Install required PHP extensions and other dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
-    libjpeg-dev \
+    libjpeg62-turbo-dev \
     libfreetype6-dev \
     libzip-dev \
     zip \
@@ -12,37 +10,25 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql zip
+    && docker-php-ext-install gd zip pdo pdo_mysql exif \
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
 WORKDIR /var/www
 
-# Copy the existing application files into the container
 COPY . .
 
-# Install PHP dependencies using Composer
-RUN composer install --optimize-autoloader --no-dev --no-interaction
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install Node.js and npm dependencies for Vite
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
+RUN composer install --no-scripts --no-autoloader
 
-# Install npm dependencies
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
+
 RUN npm install
 
-# Build assets using Vite
-RUN npm run build
+RUN npm run build  # Atau gunakan npm run dev jika tidak ingin build
 
-# Set permissions for Laravel storage and cache
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage \
-    && chmod -R 755 /var/www/bootstrap/cache
-
-# Expose port 9000 for PHP-FPM
 EXPOSE 9000
 
-# Start the PHP-FPM process
 CMD ["php-fpm"]
