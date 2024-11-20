@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd zip pdo pdo_mysql exif \
+    && docker-php-ext-enable exif
 
 WORKDIR /var/www
 
