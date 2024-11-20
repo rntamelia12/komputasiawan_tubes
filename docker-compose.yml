@@ -19,7 +19,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: ones_group
-      MYSQL_USER: onesadmin
+      MYSQL_USER: onesuser
       MYSQL_PASSWORD: ones123
     volumes:
       - dbdata:/var/lib/mysql
