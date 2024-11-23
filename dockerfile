@@ -13,10 +13,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     nodejs \
     npm \
+    zlib1g-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo pdo_mysql exif \
-    && docker-php-ext-enable exif \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install gd zip pdo pdo_mysql
 
 # Set direktori kerja
 WORKDIR /var/www
@@ -25,7 +24,10 @@ WORKDIR /var/www
 COPY . .
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
+    php -r "if (hash_file('sha384', 'composer-setup.php') === 'your_expected_hash_here') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); exit(1); } echo PHP_EOL;" && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    rm composer-setup.php
 
 # Install dependensi Composer tanpa menjalankan script
 RUN composer install --no-scripts --no-autoloader
