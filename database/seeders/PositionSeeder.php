@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Position;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,23 +12,44 @@ class PositionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('positions')->insert([
+        // Daftar posisi yang akan disisipkan
+        $positions = [
             [
-                'code' => 'FE',
-                'name' => 'Front End Developer',
-                'description' => 'Front End Developer'
+                'code' => 'DU',
+                'name' => 'Direktur Utama',
+                'description' => 'Direktur Utama',
             ],
             [
-                'code' => 'BE',
-                'name' => 'Back End Developer',
-                'description' => 'Back End Developer'
+                'code' => 'SV',
+                'name' => 'Supervisor',
+                'description' => 'Supervisor',
             ],
             [
-                'code' => 'SA',
-                'name' => 'System Analist',
-                'description' => 'System Analist'
+                'code' => 'AD',
+                'name' => 'Administrasi',
+                'description' => 'Administrasi',
             ],
-        ]);
-    }
+            [
+                'code' => 'KM',
+                'name' => 'Kepala Marketing',
+                'description' => 'Kepala Marketing',
+            ],
+            [
+                'code' => 'TM',
+                'name' => 'Tim Marketing',
+                'description' => 'Tim Marketing',
+            ],
+        ];
 
+        // Looping untuk setiap posisi
+        foreach ($positions as $position) {
+            // Mengecek apakah sudah ada posisi dengan 'code' yang sama
+            $existingPosition = DB::table('positions')->where('code', $position['code'])->first();
+
+            if (!$existingPosition) {
+                // Jika belum ada, insert data baru
+                DB::table('positions')->insert($position);
+            }
+        }
+    }
 }

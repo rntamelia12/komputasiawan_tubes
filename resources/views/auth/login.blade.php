@@ -24,7 +24,7 @@
 </head>
 <body>
     {{-- @include('layouts.nav') --}}
-    <div class="py-4 container-fluid align-center" style="height: 100vh; background-color: #b11116;">
+<div class="py-4 container-fluid align-center" style="height: 100vh; background-color: #b11116;">
     <br><br><br><br>
     <div class=" row justify-content-center">
 
@@ -32,8 +32,8 @@
             <div class="card ">
                 <div class="card-header">
                     <div class="mt-3 mb-4 text-center">
-                        <H1><i class="bi-hexagon-fill me" style="color: #b11116;"></i></H1>
-                        <h4><b>Employee OneS Group</b></h4>
+                        <H1><i class="bi-hexagon-fill me" style="color: #b11116;" ></i></H1>
+                        <h4><b>Ones Group</b></h4>
                         <hr>
                         <form method="POST" action="{{ route('login') }}">
 
@@ -78,11 +78,11 @@
                                         <i class="bi bi-box-arrow-in-right"></i> {{ __('Login') }}
                                     </button>
 
-                                    {{-- @if (Route::has('password.request'))
+                                    @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    @endif --}}
+                                    @endif
                                 </div>
                             </div>
 

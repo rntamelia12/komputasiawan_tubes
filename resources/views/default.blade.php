@@ -1,4 +1,10 @@
-<div class="container mt-4">
-    <h4 class="mb-0">Employees Chart</h4>
-    <hr>
-</div>
+@extends('layouts.app')
+@section('content')
+    <div class="bg-white rounded shadow" style="padding: 24px; margin: 40px;">
+        {!! $chart->container() !!}
+    </div>
+
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
+@endsection

@@ -15,11 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Buat user awal
-        DB::table('users')->insert([
-            'name' => 'Administrator',
-            'email' => 'admin@ones.co.id',
-            'password' => bcrypt('ones123'),
-        ]);
+        // Mengecek apakah email sudah ada, jika belum, insert user baru
+        $existingUser = DB::table('users')->where('email', 'admin@ones.id')->first();
+
+        if (!$existingUser) {
+            // Jika user belum ada, insert data user baru
+            DB::table('users')->insert([
+                'name' => 'Administrator',
+                'email' => 'admin@ones.id',
+                'password' => bcrypt('ones123'),
+            ]);
+        }
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @include('default')
-    <div class="bg-white rounded shadow" style="padding: 24px; margin: 10px;">
+    <div class="bg-white rounded shadow" style="padding: 24px; margin: 40px;">
         {!! $chart->container() !!}
     </div>
 

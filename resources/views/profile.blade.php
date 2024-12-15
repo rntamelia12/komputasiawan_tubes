@@ -1,3 +1,7 @@
+@php
+$pageTitle = "My Profile"; // Ganti dengan judul halaman yang sesuai
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
 
     @section('content')
         @include('default')
-    
+
     @endsection
     {{-- @vite('resources/js/app.js') --}}
 </body>

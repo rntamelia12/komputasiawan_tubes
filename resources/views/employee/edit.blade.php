@@ -10,15 +10,16 @@
 </head>
 
 <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     @extends('layouts.app')
 
     @section('content')
-    <div class="container-sm mt-5">
+    <div class="container-sm my-5">
         <form action="{{ route('employees.update', ['employee' => $employee->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="row justify-content-center">
-                <div class="p-5 bg-light rounded-3 col-xl-6">
+                <div class="p-5 bg-light rounded-3 border col-xl-6">
                     <div class="mb-3 text-center">
                         <i class="bi-person-circle fs-1"></i>
                         <h4>Edit Employee</h4>
@@ -29,46 +30,46 @@
                             <label for="firstName" class="form-label">First Name</label>
                             <input class="form-control @error('firstName') is-invalid @enderror" type="text" name="firstName" id="firstName" value="{{ $errors->any() ? old('firstName') : $employee->firstname }}" placeholder="Enter First Name">
                             @error('firstName')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control @error('lastName')is-invalid @enderror" type="text" name="lastName" id="lastName" value="{{ $errors->any() ? old('lastName') : $employee->lastname }}" placeholder="Enter Last Name">
+                            <input class="form-control @error('lastName') is-invalid @enderror" type="text" name="lastName" id="lastName" value="{{ $errors->any() ? old('lastName') : $employee->lastname }}" placeholder="Enter Last Name">
                             @error('lastName')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input class="form-control @error('email')is-invalid @enderror" type="text" name="email" id="email" value="{{ $errors->any() ? old('email') : $employee->email }}" placeholder="Enter Email">
+                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" id="email" value="{{ $errors->any() ? old('email') : $employee->email }}" placeholder="Enter Email">
                             @error('email')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="age" class="form-label">Age</label>
-                            <input class="form-control @error('age') is-invalid @enderror" type="text" name="age" id="age" value="{{ $errors->any() ? old('age') : $employee->age }}" placeholder="Enter Age">
-                            @error('age')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
+                            <label for="birth_date" class="form-label">Birth Date</label>
+                            <input class="form-control @error('birth_date') is-invalid @enderror" type="date" name="birth_date" id="birth_date" value="{{ $errors->any() ? old('birth_date') : $employee->birth_date }}" placeholder="Enter Birth Date">
+                            @error('birth_date')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="position" class="form-label">Position</label>
                             <select name="position" id="position" class="form-select">
                                 @php
-                                $selected = "";
-                                if ($errors->any())
-                                $selected = old('position');
-                                else
-                                $selected = $employee->position_id;
+                                    $selected = "";
+                                    if ($errors->any())
+                                        $selected = old('position');
+                                    else
+                                        $selected = $employee->position_id;
                                 @endphp
                                 @foreach ($positions as $position)
-                                <option value="{{ $position->id }}" {{ $selected == $position->id ? 'selected' : '' }}>{{ $position->code.' - '.$position->name }}</option>
+                                    <option value="{{ $position->id }}" {{ $selected == $position->id ? 'selected' : '' }}>{{ $position->code.' - '.$position->name }}</option>
                                 @endforeach
                             </select>
                             @error('position')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
@@ -98,10 +99,10 @@
                 </div>
             </div>
         </form>
-    </div>
+        </div>
     @endsection
-
-    {{-- @vite('resources/js/app.js') --}}
 </body>
 
 </html>
+
+

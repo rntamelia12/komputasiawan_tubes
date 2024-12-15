@@ -10,6 +10,5 @@
                 <i class="bi-trash"></i>
             </button>
         </form>
-
     </div>
 </div>

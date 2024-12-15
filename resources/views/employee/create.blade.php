@@ -39,7 +39,8 @@
     </nav> --}}
     @section('content')
     <div class="container-sm mt-5">
-        <form action="{{ route('employees.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('employees.store') }}" method="POST"
+        enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 border col-xl-6">
@@ -82,12 +83,12 @@
                         </div>
                         {{-- Menjadi --}}
                         <div class="col-md-6 mb-3">
-                            <label for="age" class="form-label">Age</label>
-                            <input class="form-control @error('age') is-invalid @enderror" type="text" name="age" id="age" value="{{ old('age') }}" placeholder="Enter Age">
-                            @error('age')
-                                <div class="text-danger"><small>{{ $message }}</small>
-                                </div>
+                            <label for="Birth Date" class="form-label">Birth Date</label>
+                            <input class="form-control @error('birth_date') is-invalid @enderror" type="date" name="birth_date" id="birth_date" value="{{ old('birth_date') }}" placeholder="Enter Birth Date">
+                            @error('birth_date')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
+
                         </div>
                     </div>
 
@@ -102,11 +103,10 @@
                         <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                         </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="cv" class="form-label">Curriculum Vitae (CV)</label>
-                            <input type="file" class="form-control" name="cv" id="cv">
-                        </div>
-
+                    <div class="col-md-12 mb-3">
+                        <label for="cv" class="form-label">Curriculum Vitae (CV)</label>
+                        <input type="file" class="form-control" name="cv" id="cv">
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">

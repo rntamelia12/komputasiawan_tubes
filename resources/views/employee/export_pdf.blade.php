@@ -31,7 +31,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Age</th>
+                <th>Birth Date</th>
                 <th>Position</th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
                     <td>{{ $employee->firstname }}</td>
                     <td>{{ $employee->lastname }}</td>
                     <td>{{ $employee->email }}</td>
-                    <td align="center">{{ $employee->age }}</td>
+                    <td align="center">{{ $employee->birth_date }}</td>
                     <td>{{ $employee->position->name }}</td>
                 </tr>
             @endforeach
@@ -50,3 +50,4 @@
     </table>
 </body>
 </html>
+
