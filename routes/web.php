@@ -28,6 +28,7 @@ Route::get('/', function () {
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile', ProfileController::class)->name('profile');
 
 Auth::routes();
 

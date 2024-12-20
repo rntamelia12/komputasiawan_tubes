@@ -1,45 +1,41 @@
-@php
-$pageTitle = "My Profile"; // Ganti dengan judul halaman yang sesuai
-@endphp
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $pageTitle }}</title>
-    @vite('resources/sass/app.scss')
-</head>
-<body>
-    @extends('layouts.app')
-    {{-- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <div class="container">
-            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
-
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <hr class="d-lg-none text-white-50">
-
-                <ul class="navbar-nav flex-row flex-wrap">
-                    <li class="nav-item col-6 col-md-auto"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item col-6 col-md-auto"><a href="{{ route('employees.index') }}" class="nav-link">Employee List</a></li>
-                </ul>
-
-                <hr class="d-lg-none text-white-50">
-
-                <a href="{{ route('profile') }}" class="btn btn-outline-light my-2 ms-md-auto"><i class="bi-person-circle me-1"></i> My Profile</a>
+@section('content')
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header" style="background-color: #b11116; color: #fff;">
+                    <h4 class="mb-0">{{ $pageTitle }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="avatar" style="width: 80px; height: 80px; background-color: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #555;">
+                            {{ strtoupper(substr($user->name, 0, 1)) }}
+                        </div>
+                        <div class="ms-4">
+                            <h5 class="mb-1">{{ $user->name }}</h5>
+                            <p class="mb-0 text-muted">{{ $user->email }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h6 class="text-muted">Account Details</h6>
+                    <ul class="list-unstyled">
+                        <li><strong>Email:</strong> {{ $user->email }}</li>
+                    </ul>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{{ route('logout') }}" class="btn"
+                       style="background-color: #b11116; color: #fff;"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
             </div>
         </div>
-    </nav> --}}
-
-    @section('content')
-        @include('default')
-
-    @endsection
-    {{-- @vite('resources/js/app.js') --}}
-</body>
-</html>
+    </div>
+</div>
+@endsection

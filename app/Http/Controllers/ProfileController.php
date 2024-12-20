@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
     public function __invoke(Request $request)
     {
-        $pageTitle = 'Profile';
+        $pageTitle = 'My Profile';
+        $user = Auth::user(); // Ambil data pengguna yang login
 
-        return view('profile', ['pageTitle' => $pageTitle]);
-
+        return view('profile', compact('pageTitle', 'user'));
     }
 }
